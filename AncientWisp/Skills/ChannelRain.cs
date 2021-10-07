@@ -144,9 +144,9 @@ namespace EntityStates.MoffeinAncientWispSkills
 
 		public static float baseDuration = 7f;
 		public static float explosionDelay = 1.3f;
-		public static int explosionCount = 40;
+		public static int explosionCount = 45;
 
-		public static int maxExplosions = 72;
+		public static int maxExplosions = 120;
 
 		public static float damageCoefficient = 2.1f;
 		public static float randomRadius = 16f;

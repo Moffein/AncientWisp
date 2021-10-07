@@ -52,7 +52,7 @@ namespace EntityStates.MoffeinAncientWispSkills
 		{
 			return InterruptPriority.Frozen;
 		}
-		public static float baseDuration = 2.5f;
+		public static float baseDuration = 2f;
 		public static GameObject effectPrefab = EntityStates.AncientWispMonster.ChargeRain.effectPrefab;
 		public static GameObject delayPrefab = EntityStates.AncientWispMonster.ChargeRain.delayPrefab;
 

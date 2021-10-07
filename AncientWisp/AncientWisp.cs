@@ -20,8 +20,8 @@ using RoR2.ContentManagement;
 namespace AncientWisp
 {
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.3.3")]
-    [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(LanguageAPI), nameof(SoundAPI))]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.3.4")]
+    [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(LanguageAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class AncientWisp : BaseUnityPlugin
     {
@@ -41,6 +41,8 @@ namespace AncientWisp
         public static int artifact;
 
         GameObject ancientWispObject;
+
+        public static DirectorAPI.DirectorCardHolder ancientWispCard;
 
         public void Start()
         {
@@ -131,13 +133,12 @@ namespace AncientWisp
                 }
             };
 
-            On.RoR2.CharacterBody.RecalculateStats += (orig, self) =>
+            RecalculateStatsAPI.GetStatCoefficients += (CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args) =>
             {
-                orig(self);
-                if (self.HasBuff(RoR2Content.Buffs.EnrageAncientWisp))
+                if (sender.HasBuff(RoR2Content.Buffs.EnrageAncientWisp))
                 {
-                    self.attackSpeed *= 1.3f;
-                    self.moveSpeed *= 1.3f;
+                    args.attackSpeedMultAdd += 0.5f;
+                    args.moveSpeedMultAdd += 0.3f;
                 }
             };
 
@@ -152,6 +153,7 @@ namespace AncientWisp
 
             ContentManager.collectContentPackProviders += ContentManager_collectContentPackProviders;
         }
+
         private void ContentManager_collectContentPackProviders(ContentManager.AddContentPackProviderDelegate addContentPackProvider)
         {
             addContentPackProvider(new AWContent());
@@ -385,7 +387,7 @@ namespace AncientWisp
                 forbiddenUnlockable = "",
                 spawnDistance = DirectorCore.MonsterSpawnDistance.Standard
             };
-            DirectorAPI.DirectorCardHolder ancientWispCard = new DirectorAPI.DirectorCardHolder
+            ancientWispCard = new DirectorAPI.DirectorCardHolder
             {
                 Card = directorCard,
                 MonsterCategory = DirectorAPI.MonsterCategory.Champions,
@@ -435,11 +437,8 @@ namespace AncientWisp
                         case DirectorAPI.Stage.GildedCoast:
                             addAW = gilded;
                             break;
-                        case DirectorAPI.Stage.Custom:
-                            if (stage.CustomStageName == "rootjungle")
-                            {
-                                addAW = sundered;
-                            }
+                        case DirectorAPI.Stage.SunderedGrove:
+                            addAW = sundered;
                             break;
                         default:
                             break;

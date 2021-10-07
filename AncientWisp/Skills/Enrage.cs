@@ -64,10 +64,10 @@ namespace EntityStates.MoffeinAncientWispSkills
 					effectData.origin = base.transform.position;
 					effectData.SetNetworkedObjectReference(base.gameObject);
 					EffectManager.SpawnEffect(Enrage.enragePrefab, effectData, true);
-					/*for (int i = 0; i < 2; i++)
+					for (int i = 0; i < 2; i++)
 					{
-						SummonEnemy("SpawnCards/CharacterSpawnCards/cscArchWisp");
-					}*/
+						SummonEnemy("SpawnCards/CharacterSpawnCards/cscGreaterWisp");
+					}
 
 					if (!base.characterBody.HasBuff(RoR2Content.Buffs.EnrageAncientWisp))
 					{
@@ -105,7 +105,7 @@ namespace EntityStates.MoffeinAncientWispSkills
 			DirectorCore.instance.TrySpawnObject(directorSpawnRequest);
 		}
 
-		public static float baseDuration = 3f;
+		public static float baseDuration = 2.5f;
 		public static GameObject enragePrefab = EntityStates.AncientWispMonster.Enrage.enragePrefab;
 		private Animator modelAnimator;
 		private float duration;
