@@ -16,11 +16,14 @@ using R2API;
 using R2API.Utils;
 using MonoMod.RuntimeDetour;
 using RoR2.ContentManagement;
+using System.Runtime.CompilerServices;
 
 namespace AncientWisp
 {
+    [BepInDependency("com.Moffein.RiskyArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
+
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.3.4")]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.3.5")]
     [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(LanguageAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class AncientWisp : BaseUnityPlugin
@@ -40,6 +43,8 @@ namespace AncientWisp
         public static int gilded;
         public static int artifact;
 
+        public static bool allowOrigin = true;
+
         GameObject ancientWispObject;
 
         public static DirectorAPI.DirectorCardHolder ancientWispCard;
@@ -58,6 +63,7 @@ namespace AncientWisp
         {
             FixEntityStates.RunFix();
             flareSize = base.Config.Bind<float>(new ConfigDefinition("00 - General", "Eye Flare Size"), 0.5f, new ConfigDescription("How big the flare effect on the eye should be. 0 disables.")).Value;
+            allowOrigin = base.Config.Bind<bool>(new ConfigDefinition("00 - General", "Add to Artifact of Origination Spawnpool"), true, new ConfigDescription("Allows this boss to spawn when Origination from Risky Artifacts is enabled.")).Value;
             titanicPlains = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Titanic Plains"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             distantRoost = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Distant Roost"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             wetlands = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Wetland Aspect"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
@@ -152,6 +158,15 @@ namespace AncientWisp
             };
 
             ContentManager.collectContentPackProviders += ContentManager_collectContentPackProviders;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        private void SetupOrigin(SpawnCard spawncard)
+        {
+            if (allowOrigin)
+            {
+                Risky_Artifacts.Artifacts.Origin.AddSpawnCard(spawncard, Risky_Artifacts.Artifacts.Origin.BossTier.t2);
+            }
         }
 
         private void ContentManager_collectContentPackProviders(ContentManager.AddContentPackProviderDelegate addContentPackProvider)
@@ -393,6 +408,11 @@ namespace AncientWisp
                 MonsterCategory = DirectorAPI.MonsterCategory.Champions,
                 InteractableCategory = DirectorAPI.InteractableCategory.None
             };
+
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Moffein.RiskyArtifacts"))
+            {
+                SetupOrigin(ancientWispCSC);
+            }
 
             DirectorAPI.MonsterActions += delegate (List<DirectorAPI.DirectorCardHolder> list, DirectorAPI.StageInfo stage)
             {
