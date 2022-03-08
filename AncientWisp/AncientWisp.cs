@@ -37,11 +37,13 @@ namespace AncientWisp
         public static int scorched;
         public static int abyss;
         public static int sirens;
-        public static int sundered;
+        public static int stadia;
         public static int skymeadow;
         public static int voidCell;
         public static int gilded;
         public static int artifact;
+
+        public static int snowyForest, aphSanct, sulfur;
 
         public static bool allowOrigin = true;
 
@@ -74,11 +76,14 @@ namespace AncientWisp
             scorched = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Scorched Acres"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             abyss = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Abyssal Depths"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             sirens = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sirens Call"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
-            sundered = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sundered Grove"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
+            stadia = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sundered Grove"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             skymeadow = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sky Meadow"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             voidCell = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Void Fields"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             artifact = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Bulwarks Ambry"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             gilded = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Gilded Coast"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
+            snowyForest = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Siphoned Forest"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
+            aphSanct = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Aphelian Sanctuary"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
+            sulfur = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sulfur Pools"), 5, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
 
             RegisterLanguageTokens();
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("AncientWisp.moffeinancientwisp"))
@@ -480,11 +485,50 @@ namespace AncientWisp
                             addAW = gilded;
                             break;
                         case DirectorAPI.Stage.SunderedGrove:
-                            addAW = sundered;
+                            addAW = stadia;
                             break;
                         default:
                             break;
                     }
+
+                    //Todo: Replace when R2API updates
+                    if (addAW < 0)
+                    {
+                        switch (stage.CustomStageName)
+                        {
+                            //Simulacrum
+                            case "itgolemplains":
+                                addAW = titanicPlains >= 0 ? 0 : -1;
+                                break;
+                            case "itdampcave":
+                                addAW = abyss >= 0 ? 0 : -1;
+                                break;
+                            case "itancientloft":
+                                addAW = aphSanct >= 0 ? 0 : -1;
+                                break;
+                            case "itfrozenwall":
+                                addAW = rallypoint >= 0 ? 0 : -1;
+                                break;
+                            case "itgoolake":
+                                addAW = aqueduct >= 0 ? 0 : -1;
+                                break;
+                            case "itskymeadow":
+                                addAW = skymeadow >= 0 ? 0 : -1;
+                                break;
+
+                            //DLC1
+                            case "ancientloft":
+                                addAW = aphSanct;
+                                break;
+                            case "sulfurpools":
+                                addAW = sulfur;
+                                break;
+                            case "snowyforest":
+                                addAW = snowyForest;
+                                break;
+                        }
+                    }
+
                     if (addAW >= 0)
                     {
                         directorCard.minimumStageCompletions = addAW;
