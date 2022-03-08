@@ -52,6 +52,6 @@ namespace AncientWisp.Helpers
 
         private bool fired = false;
         private float stopwatch = 0f;
-        //public static GameObject tracer = Resources.Load<GameObject>("prefabs/effects/tracers/tracertoolbotrebar");
+        //public static GameObject tracer = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/tracers/tracertoolbotrebar");
     }
 }

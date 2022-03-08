@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{30F08FFC-27C6-437B-80E4-43C654B45C8D}" SchemaVersion="89">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{30F08FFC-27C6-437B-80E4-43C654B45C8D}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="AncientWispBank" ID="{04E9A16E-8B0F-4445-A098-2AF09ED55477}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_MoffeinAW_spawn" ID="{815E8B62-2BC3-427A-8720-3098C41215C4}" WorkUnitID="{B3D86EB5-BC08-4836-8D9E-DCAF7498985A}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Play_MoffeinAW_deathexplosion" ID="{95EFB6BA-8F4E-46BD-AB40-FD2F8FCA006D}" WorkUnitID="{B3D86EB5-BC08-4836-8D9E-DCAF7498985A}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Play_MoffeinAW_lightning" ID="{0AABFA06-8954-4A1A-8F7D-EC3D3E84DDA5}" WorkUnitID="{B3D86EB5-BC08-4836-8D9E-DCAF7498985A}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Play_MoffeinAW_death" ID="{4D41F29C-DD2F-4DE3-9ABB-CB468EC2D89D}" WorkUnitID="{B3D86EB5-BC08-4836-8D9E-DCAF7498985A}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

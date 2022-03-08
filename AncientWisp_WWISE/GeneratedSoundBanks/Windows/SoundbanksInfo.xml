@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Node\RoR2 Mods\AncientWisp\AncientWisp_WWISE\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Node\RoR2 Mods\AncientWisp\AncientWisp_WWISE\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Node\RoR2 Mods\AncientWisp\AncientWisp_WWISE\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Node\RoR2 Mods\AncientWisp\AncientWisp_WWISE\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX" Hash="1891520505">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2734778204" Language="SFX" Hash="2537919290">
+			<ObjectPath>\SoundBanks\Default Work Unit\AncientWispBank</ObjectPath>
+			<ShortName>AncientWispBank</ShortName>
+			<Path>AncientWispBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2143808105" Name="Play_MoffeinAW_death" ObjectPath="\Events\Default Work Unit\Play_MoffeinAW_death">
+					<IncludedMemoryFiles>
+						<File Id="989229546" Language="SFX">
+							<ShortName>wWispBDeath.wav</ShortName>
+							<Path>SFX\wWispBDeath_0D5756A9.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3482973014" Name="Play_MoffeinAW_deathexplosion" ObjectPath="\Events\Default Work Unit\Play_MoffeinAW_deathexplosion">
+					<IncludedMemoryFiles>
+						<File Id="1015708222" Language="SFX">
+							<ShortName>wWormExplosion.wav</ShortName>
+							<Path>SFX\wWormExplosion_0D5756A9.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="992581105" Name="Play_MoffeinAW_lightning" ObjectPath="\Events\Default Work Unit\Play_MoffeinAW_lightning">
+					<IncludedMemoryFiles>
+						<File Id="989229546" Language="SFX">
+							<ShortName>wWispBDeath.wav</ShortName>
+							<Path>SFX\wWispBDeath_0D5756A9.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1352710422" Name="Play_MoffeinAW_spawn" ObjectPath="\Events\Default Work Unit\Play_MoffeinAW_spawn">
+					<IncludedMemoryFiles>
+						<File Id="898416079" Language="SFX">
+							<ShortName>wWispBShoot1.wav</ShortName>
+							<Path>SFX\wWispBShoot1_0D5756A9.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="3673881719" Name="Volume_SFX" ObjectPath="\Game Parameters\Default Work Unit\Volume_SFX"/>
+			</GameParameters>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

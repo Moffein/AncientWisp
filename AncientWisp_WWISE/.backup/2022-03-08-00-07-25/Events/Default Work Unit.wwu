@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B3D86EB5-BC08-4836-8D9E-DCAF7498985A}" SchemaVersion="89">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{B3D86EB5-BC08-4836-8D9E-DCAF7498985A}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_MoffeinAW_death" ID="{4D41F29C-DD2F-4DE3-9ABB-CB468EC2D89D}">
+					<ChildrenList>
+						<Action Name="" ID="{FEC54F7E-B995-4EEB-BEE8-C671B2D395E7}" ShortID="198031783">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="wWispBDeath" ID="{9720ADEE-64B4-4CC9-8221-7142B9E8C8D9}" WorkUnitID="{DD8DC03A-2E81-40EF-A92B-792B7D783B3B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_MoffeinAW_lightning" ID="{0AABFA06-8954-4A1A-8F7D-EC3D3E84DDA5}">
+					<ChildrenList>
+						<Action Name="" ID="{E575E9FB-DCCD-4CDD-82EE-D28D208CDF71}" ShortID="105810563">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="wWispB_Lightning" ID="{D787A4BA-C01E-4E63-B7F9-13F795DB1EB5}" WorkUnitID="{DD8DC03A-2E81-40EF-A92B-792B7D783B3B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_MoffeinAW_spawn" ID="{815E8B62-2BC3-427A-8720-3098C41215C4}">
+					<ChildrenList>
+						<Action Name="" ID="{5027BFBD-C3A5-4D91-96F5-540F58ACEEA5}" ShortID="784702960">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="wWispBShoot1" ID="{AECA2996-D542-4BED-A875-B3ABD5A3EC07}" WorkUnitID="{DD8DC03A-2E81-40EF-A92B-792B7D783B3B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_MoffeinAW_deathexplosion" ID="{95EFB6BA-8F4E-46BD-AB40-FD2F8FCA006D}">
+					<ChildrenList>
+						<Action Name="" ID="{7AEA4A68-F258-44EF-9857-7ED8A249B7AE}" ShortID="350645267">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="wWormExplosion" ID="{5751B4F0-00FB-4D38-B63E-8164F38663BD}" WorkUnitID="{DD8DC03A-2E81-40EF-A92B-792B7D783B3B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

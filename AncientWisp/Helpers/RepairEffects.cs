@@ -19,12 +19,12 @@ namespace AncientWisp
         }
         private static void RepairEnrageEffect()
         {
-            GameObject effect = Resources.Load<GameObject>("prefabs/effects/AncientWispEnrage");
+            GameObject effect = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/AncientWispEnrage");
             Transform effectTransform = effect.transform.Find("SwingTrail");
             var effectRenderer = effectTransform.GetComponent<Renderer>();
             if (effectRenderer)
             {
-                effectRenderer.material = Resources.Load<GameObject>("prefabs/effects/muzzleflashes/muzzleflashbanditshotgun").transform.Find("Fire").GetComponent<Renderer>().material;
+                effectRenderer.material = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/muzzleflashes/muzzleflashbanditshotgun").transform.Find("Fire").GetComponent<Renderer>().material;
             }
             Enrage.enragePrefab = effect;
         }
@@ -47,7 +47,7 @@ namespace AncientWisp
             var effectRenderer = effectTransform.GetComponent<Renderer>();
             if (effectRenderer)
             {
-                effectRenderer.material = Resources.Load<GameObject>("prefabs/effects/muzzleflashes/muzzleflashbanditshotgun").transform.Find("Fire").GetComponent<Renderer>().material;
+                effectRenderer.material = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/muzzleflashes/muzzleflashbanditshotgun").transform.Find("Fire").GetComponent<Renderer>().material;
             }
         }
 

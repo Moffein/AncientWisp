@@ -23,7 +23,7 @@ namespace AncientWisp
     [BepInDependency("com.Moffein.RiskyArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
 
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.3.5")]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.4.0")]
     [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(LanguageAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class AncientWisp : BaseUnityPlugin
@@ -44,6 +44,8 @@ namespace AncientWisp
         public static int artifact;
 
         public static bool allowOrigin = true;
+
+        public static BuffDef enrageBuff;
 
         GameObject ancientWispObject;
 
@@ -74,7 +76,7 @@ namespace AncientWisp
             sirens = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sirens Call"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             sundered = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sundered Grove"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             skymeadow = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Sky Meadow"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
-            voidCell = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Void Fields"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
+            voidCell = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Void Fields"), -1, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             artifact = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Bulwarks Ambry"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
             gilded = base.Config.Bind<int>(new ConfigDefinition("01 - Stages", "Gilded Coast"), 0, new ConfigDescription("Minimum stage completions before the boss can spawn. -1 = disabled, 0 = can spawn anytime, 5 = loop-only")).Value;
 
@@ -93,13 +95,13 @@ namespace AncientWisp
 
             RepairEffects.Repair();
 
-            ancientWispObject = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("prefabs/characterbodies/AncientWispBody"), "MoffeinAncientWispBody", true);
-            GameObject ancientWispMaster = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("prefabs/charactermasters/AncientWispMaster"), "MoffeinAncientWispMaster", true);
+            ancientWispObject = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("prefabs/characterbodies/AncientWispBody"), "MoffeinAncientWispBody", true);
+            GameObject ancientWispMaster = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("prefabs/charactermasters/AncientWispMaster"), "MoffeinAncientWispMaster", true);
             CharacterBody ancientWispBody = ancientWispObject.GetComponent<CharacterBody>();
             SkillLocator ancientWispSkills = ancientWispObject.GetComponent<SkillLocator>();
 
 
-            ancientWispObject.GetComponent<CameraTargetParams>().cameraParams = Resources.Load<GameObject>("prefabs/characterbodies/ImpBossBody").GetComponent<CameraTargetParams>().cameraParams;
+            ancientWispObject.GetComponent<CameraTargetParams>().cameraParams = LegacyResourcesAPI.Load<GameObject>("prefabs/characterbodies/ImpBossBody").GetComponent<CameraTargetParams>().cameraParams;
 
             ancientWispMaster.GetComponent<CharacterMaster>().bodyPrefab = ancientWispObject;
 
@@ -130,6 +132,8 @@ namespace AncientWisp
             Interactor interactor = ancientWispObject.GetComponent<Interactor>();
             interactor.maxInteractionDistance = 6f;
 
+            enrageBuff = LegacyResourcesAPI.Load<BuffDef>("BuffDefs/EnrageAncientWisp");
+
             On.RoR2.CharacterBody.OnDeathStart += (orig, self) =>
             {
                 orig(self);
@@ -141,7 +145,7 @@ namespace AncientWisp
 
             RecalculateStatsAPI.GetStatCoefficients += (CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args) =>
             {
-                if (sender.HasBuff(RoR2Content.Buffs.EnrageAncientWisp))
+                if (sender.HasBuff(enrageBuff))
                 {
                     args.attackSpeedMultAdd += 0.5f;
                     args.moveSpeedMultAdd += 0.3f;
@@ -165,7 +169,7 @@ namespace AncientWisp
         {
             if (allowOrigin)
             {
-                Risky_Artifacts.Artifacts.Origin.AddSpawnCard(spawncard, Risky_Artifacts.Artifacts.Origin.BossTier.t2);
+                Risky_Artifacts.Artifacts.Origin.AddSpawnCard(spawncard, Risky_Artifacts.Artifacts.Origin.BossTier.t3);
             }
         }
 
@@ -180,12 +184,18 @@ namespace AncientWisp
 
             Component[] goComponents = go.GetComponentsInChildren<Transform>();
             Transform goTransform = null;
+            Transform headTransform = null;
             foreach (Transform t in goComponents)
             {
+                //Debug.Log(t.name);
                 if (t.name == "chest")
                 {
                     goTransform = t;
-                    break;
+                    //break;
+                }
+                else if (t.name == "Head")
+                {
+                    headTransform = t;
                 }
             }
 
@@ -200,18 +210,33 @@ namespace AncientWisp
             #region chest
             goTransform.gameObject.layer = LayerIndex.entityPrecise.intVal;
             CapsuleCollider goCollider = goTransform.gameObject.AddComponent<CapsuleCollider>();
+
             HurtBox goHurtBox = goTransform.gameObject.AddComponent<HurtBox>();
             goHurtBox.isBullseye = true;
             goHurtBox.healthComponent = go.GetComponent<HealthComponent>();
             goHurtBox.damageModifier = HurtBox.DamageModifier.Normal;
             goHurtBox.hurtBoxGroup = goHurtBoxGroup;
             goHurtBox.indexInGroup = 0;
-            //clayHurtBox.name = "ChestHurtbox";
+            #endregion
+
+            #region head
+            headTransform.gameObject.layer = LayerIndex.entityPrecise.intVal;
+            BoxCollider headCollider = headTransform.gameObject.AddComponent<BoxCollider>();
+            headCollider.center += 0.3f * Vector3.up;
+
+            HurtBox headHurtbox = headTransform.gameObject.AddComponent<HurtBox>();
+            headHurtbox.isBullseye = false;
+            headHurtbox.healthComponent = go.GetComponent<HealthComponent>();
+            headHurtbox.damageModifier = HurtBox.DamageModifier.Normal;
+            headHurtbox.isSniperTarget = true;
+            headHurtbox.hurtBoxGroup = goHurtBoxGroup;
+            headHurtbox.indexInGroup = 1;
             #endregion
 
             HurtBox[] goHurtBoxArray = new HurtBox[]
             {
-                goHurtBox
+                goHurtBox,
+                headHurtbox
             };
 
             goHurtBoxGroup.bullseyeCount = 1;
@@ -365,7 +390,7 @@ namespace AncientWisp
             ancientWispBody.baseRegen = 0f;
             ancientWispBody.levelRegen = ancientWispBody.baseRegen * 0.2f;
             ancientWispBody.portraitIcon = AWContent.assets.LoadAsset<Texture>("aw_noflames.png");
-            ancientWispBody.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/simpledotcrosshair");
+            ancientWispBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/simpledotcrosshair");
             ancientWispBody.hideCrosshair = false;
 
             AWContent.entityStates.Add(typeof(EntityStates.MoffeinAncientWispSkills.SpawnState));
@@ -385,7 +410,7 @@ namespace AncientWisp
             ancientWispCSC.nodeGraphType = MapNodeGroup.GraphType.Ground;
             ancientWispCSC.requiredFlags = NodeFlags.None;
             ancientWispCSC.forbiddenFlags = NodeFlags.NoCharacterSpawn;
-            ancientWispCSC.directorCreditCost = 800;
+            ancientWispCSC.directorCreditCost = 1000;
             ancientWispCSC.occupyPosition = false;
             ancientWispCSC.loadout = new SerializableLoadout();
             ancientWispCSC.noElites = false;
@@ -395,7 +420,6 @@ namespace AncientWisp
             {
                 spawnCard = ancientWispCSC,
                 selectionWeight = 1,
-                allowAmbushSpawn = true,
                 preventOverhead = false,
                 minimumStageCompletions = 0,
                 requiredUnlockable = "",
@@ -475,8 +499,8 @@ namespace AncientWisp
 
         private static void BuildLightningProjectile()
         {
-            GameObject proj = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("prefabs/projectiles/nullifierprebombprojectile"), "MoffeinAWLightning", true);
-            GameObject projGhost = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("prefabs/projectileghosts/nullifierprebombghost"), "MoffeinAWLightningGhost", false);
+            GameObject proj = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("prefabs/projectiles/nullifierprebombprojectile"), "MoffeinAWLightning", true);
+            GameObject projGhost = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("prefabs/projectileghosts/nullifierprebombghost"), "MoffeinAWLightningGhost", false);
             AWContent.projectilePrefabs.Add(proj);
             proj.AddComponent<LightningVerticalHit>();
 
@@ -512,8 +536,8 @@ namespace AncientWisp
 
         private void ModifyArchWispProjectile()
         {
-            GameObject proj = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("prefabs/projectiles/ArchWispCannon"), "MoffeinAncientWispCannon", true);
-            //GameObject projGround = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("prefabs/projectiles/ArchWispGroundCannon"), "MoffeinAncientWispGroundCannon", true);
+            GameObject proj = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("prefabs/projectiles/ArchWispCannon"), "MoffeinAncientWispCannon", true);
+            //GameObject projGround = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("prefabs/projectiles/ArchWispGroundCannon"), "MoffeinAncientWispGroundCannon", true);
 
             ProjectileSimple ps = proj.GetComponent<ProjectileSimple>();
             ps.lifetime = 7f;
@@ -812,7 +836,7 @@ namespace AncientWisp
 
         internal void PopulateDisplays()
         {
-            ItemDisplayRuleSet itemDisplayRuleSet = Resources.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<ModelLocator>().modelTransform.GetComponent<CharacterModel>().itemDisplayRuleSet;
+            ItemDisplayRuleSet itemDisplayRuleSet = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<ModelLocator>().modelTransform.GetComponent<CharacterModel>().itemDisplayRuleSet;
 
             ItemDisplayRuleSet.KeyAssetRuleGroup[] item = itemDisplayRuleSet.keyAssetRuleGroups;
 

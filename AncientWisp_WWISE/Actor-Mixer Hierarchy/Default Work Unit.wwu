@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{DD8DC03A-2E81-40EF-A92B-792B7D783B3B}" SchemaVersion="97">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{DD8DC03A-2E81-40EF-A92B-792B7D783B3B}" PersistMode="Standalone">
+			<ChildrenList>
+				<ActorMixer Name="Master Mixer" ID="{2D359E54-E933-4922-A14A-96A51A053A70}" ShortID="203311498">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{A5356684-56A2-4ED8-B3F4-710629B020E2}" ShortID="66177495">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Volume_SFX" ID="{04B70B29-4135-4841-8D8A-A6EED2E65F84}" WorkUnitID="{90FC6341-E315-4194-9DDF-B172FD484535}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{B569C4C6-FD7C-4B92-9488-C28801EDE545}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26F27034-8889-44D4-BA38-BBAACF6BAD5D}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AA62B953-A168-439C-9812-24E2C9364431}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<ActorMixer Name="SFX Mixer" ID="{D12D2F47-F050-4E8E-91BE-932905EBECB3}" ShortID="478480129">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26F27034-8889-44D4-BA38-BBAACF6BAD5D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AA62B953-A168-439C-9812-24E2C9364431}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<ActorMixer Name="AncientWisp Mixer" ID="{58D816E8-523C-4795-91CF-1745B1B96F91}" ShortID="228673070">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="AncientWispAttenuation" ID="{FC1A65FD-3A0C-4F90-A204-AF8F4F09AFA9}" WorkUnitID="{A2B2039A-4A4A-4D76-8A30-11860ECF0262}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26F27034-8889-44D4-BA38-BBAACF6BAD5D}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AA62B953-A168-439C-9812-24E2C9364431}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="wWispBDeath" ID="{9720ADEE-64B4-4CC9-8221-7142B9E8C8D9}" ShortID="181100579">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26F27034-8889-44D4-BA38-BBAACF6BAD5D}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AA62B953-A168-439C-9812-24E2C9364431}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="wWispBDeath" ID="{73232987-009F-470F-8EC7-22921E0C97F1}">
+													<Language>SFX</Language>
+													<AudioFile>wWispBDeath.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="989229546"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="wWispBDeath" ID="{73232987-009F-470F-8EC7-22921E0C97F1}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="wWispB_Lightning" ID="{D787A4BA-C01E-4E63-B7F9-13F795DB1EB5}" ShortID="70955455">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{278996DD-1558-4E2C-B9B0-52D882E0022A}">
+																<PropertyList>
+																	<Property Name="Max" Type="Real64" Value="30"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-1040</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{E0302737-C603-4EBE-8C5B-B56A27C266B6}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																	<Property Name="Min" Type="Real64" Value="-200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26F27034-8889-44D4-BA38-BBAACF6BAD5D}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AA62B953-A168-439C-9812-24E2C9364431}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="wWispBDeath" ID="{90304AEF-BF1B-4422-BA52-D59B0E922C08}">
+													<Language>SFX</Language>
+													<AudioFile>wWispBDeath.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="989229546"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="wWispBDeath" ID="{90304AEF-BF1B-4422-BA52-D59B0E922C08}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="wWispBShoot1" ID="{AECA2996-D542-4BED-A875-B3ABD5A3EC07}" ShortID="233814205">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26F27034-8889-44D4-BA38-BBAACF6BAD5D}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AA62B953-A168-439C-9812-24E2C9364431}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="wWispBShoot1" ID="{3955BD81-B7D1-4CE7-8C4A-F271D95474A3}">
+													<Language>SFX</Language>
+													<AudioFile>wWispBShoot1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="898416079"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="wWispBShoot1" ID="{3955BD81-B7D1-4CE7-8C4A-F271D95474A3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="wWormExplosion" ID="{5751B4F0-00FB-4D38-B63E-8164F38663BD}" ShortID="798633554">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-9</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{26F27034-8889-44D4-BA38-BBAACF6BAD5D}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AA62B953-A168-439C-9812-24E2C9364431}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="wWormExplosion" ID="{B4E4AD8E-AFC5-4B2D-A722-04FAE74DE71C}">
+													<Language>SFX</Language>
+													<AudioFile>wWormExplosion.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1015708222"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="wWormExplosion" ID="{B4E4AD8E-AFC5-4B2D-A722-04FAE74DE71C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</ActorMixer>
+							</ChildrenList>
+						</ActorMixer>
+					</ChildrenList>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

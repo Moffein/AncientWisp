@@ -49,7 +49,7 @@ namespace AncientWisp.Helpers
         }
 
         private float stopwatch;
-        public static GameObject archWispExplosion = Resources.Load<GameObject>("prefabs/effects/archwispdeath");
+        public static GameObject archWispExplosion = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/archwispdeath");
         public static float timeBetweenExplosions = 0.4f;
     }
 }

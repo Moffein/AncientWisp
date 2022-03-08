@@ -69,9 +69,9 @@ namespace EntityStates.MoffeinAncientWispSkills
 						SummonEnemy("SpawnCards/CharacterSpawnCards/cscGreaterWisp");
 					}
 
-					if (!base.characterBody.HasBuff(RoR2Content.Buffs.EnrageAncientWisp))
+					if (!base.characterBody.HasBuff(AncientWisp.AncientWisp.enrageBuff))
 					{
-						base.characterBody.AddBuff(RoR2Content.Buffs.EnrageAncientWisp);
+						base.characterBody.AddBuff(AncientWisp.AncientWisp.enrageBuff);
 					}
 				}
 			}
@@ -89,7 +89,7 @@ namespace EntityStates.MoffeinAncientWispSkills
 
 		private void SummonEnemy(string str)
 		{
-			DirectorSpawnRequest directorSpawnRequest = new DirectorSpawnRequest((SpawnCard)Resources.Load(str), new DirectorPlacementRule
+			DirectorSpawnRequest directorSpawnRequest = new DirectorSpawnRequest(LegacyResourcesAPI.Load<SpawnCard>(str), new DirectorPlacementRule
 			{
 				placementMode = DirectorPlacementRule.PlacementMode.Approximate,
 				minDistance = 3f,
