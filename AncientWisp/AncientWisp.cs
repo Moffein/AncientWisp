@@ -187,11 +187,9 @@ namespace AncientWisp
             Transform headTransform = null;
             foreach (Transform t in goComponents)
             {
-                //Debug.Log(t.name);
                 if (t.name == "chest")
                 {
                     goTransform = t;
-                    //break;
                 }
                 else if (t.name == "Head")
                 {
