@@ -10,7 +10,7 @@ namespace AncientWisp
     {
         public ItemDisplays()
         {
-            DisplaySetup(AncientWisp.AncientWispObject);
+            DisplaySetup(AncientWispPlugin.AncientWispObject);
         }
         private void DisplaySetup(GameObject go)
         {

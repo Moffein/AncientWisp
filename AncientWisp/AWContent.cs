@@ -21,6 +21,7 @@ namespace AncientWisp
         public static List<Type> entityStates = new List<Type>();
 
         public static List<GameObject> projectilePrefabs = new List<GameObject>();
+        public static DirectorAPI.DirectorCardHolder AncientWispCard;
 
         public string identifier => "AncientWisp.AWContent";
 

@@ -34,7 +34,7 @@ namespace AncientWisp
                 minimumStageCompletions = 0,
                 spawnDistance = DirectorCore.MonsterSpawnDistance.Standard
             };
-            AncientWisp.ancientWispCard = new DirectorAPI.DirectorCardHolder
+            AWContent.AncientWispCard = new DirectorAPI.DirectorCardHolder
             {
                 Card = directorCard,
                 MonsterCategory = DirectorAPI.MonsterCategory.Champions,
@@ -59,11 +59,11 @@ namespace AncientWisp
 
             DirectorAPI.MonsterActions += delegate (List<DirectorAPI.DirectorCardHolder> list, DirectorAPI.StageInfo stage)
             {
-                if (!list.Contains(AncientWisp.ancientWispCard))
+                if (!list.Contains(AWContent.AncientWispCard))
                 {
                     bool shouldSpawn = false;
                     int minStages = 0;
-                    foreach (StageSpawnInfo ssi in AncientWisp.StageList)
+                    foreach (StageSpawnInfo ssi in AncientWispPlugin.StageList)
                     {
                         if (ssi.GetStageName() == stage.CustomStageName)
                         {
@@ -73,10 +73,10 @@ namespace AncientWisp
                         }
                     }
 
-                    if (shouldSpawn)
+                    if (shouldSpawn && Run.instance.stageClearCount >= minStages)   //This skips having to make a card for each unique minStageCompletions
                     {
-                        directorCard.minimumStageCompletions = minStages;
-                        list.Add(AncientWisp.ancientWispCard);
+                        //directorCard.minimumStageCompletions = minStages; //Don't modify the static variable
+                        list.Add(AWContent.AncientWispCard);
                     }
                 }
             };
@@ -85,7 +85,7 @@ namespace AncientWisp
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         private void SetupOrigin(SpawnCard spawncard)
         {
-            if (AncientWisp.allowOrigin)
+            if (AncientWispPlugin.allowOrigin)
             {
                 Risky_Artifacts.Artifacts.Origin.AddSpawnCard(spawncard, Risky_Artifacts.Artifacts.Origin.BossTier.t3);
             }

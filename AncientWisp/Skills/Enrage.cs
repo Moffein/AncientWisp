@@ -69,9 +69,9 @@ namespace EntityStates.MoffeinAncientWispSkills
 						SummonEnemy("SpawnCards/CharacterSpawnCards/cscGreaterWisp");
 					}
 
-					if (!base.characterBody.HasBuff(AncientWisp.AncientWisp.enrageBuff))
+					if (!base.characterBody.HasBuff(AncientWisp.AncientWispPlugin.enrageBuff))
 					{
-						base.characterBody.AddBuff(AncientWisp.AncientWisp.enrageBuff);
+						base.characterBody.AddBuff(AncientWisp.AncientWispPlugin.enrageBuff);
 					}
 				}
 			}
