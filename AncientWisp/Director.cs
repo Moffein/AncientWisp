@@ -37,8 +37,21 @@ namespace AncientWisp
             AWContent.AncientWispCard = new DirectorAPI.DirectorCardHolder
             {
                 Card = directorCard,
-                MonsterCategory = DirectorAPI.MonsterCategory.Champions,
-                InteractableCategory = DirectorAPI.InteractableCategory.None
+                MonsterCategory = DirectorAPI.MonsterCategory.Champions
+            };
+
+            DirectorCard directorCardLoop = new DirectorCard
+            {
+                spawnCard = ancientWispCSC,
+                selectionWeight = 1,
+                preventOverhead = false,
+                minimumStageCompletions = 5,
+                spawnDistance = DirectorCore.MonsterSpawnDistance.Standard
+            };
+            AWContent.AncientWispLoopCard = new DirectorAPI.DirectorCardHolder
+            {
+                Card = directorCardLoop,
+                MonsterCategory = DirectorAPI.MonsterCategory.Champions
             };
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Moffein.RiskyArtifacts"))
@@ -49,37 +62,16 @@ namespace AncientWisp
             DirectorCardCategorySelection dissonanceSpawns = Addressables.LoadAssetAsync<DirectorCardCategorySelection>("RoR2/Base/MixEnemy/dccsMixEnemy.asset").WaitForCompletion();
             dissonanceSpawns.AddCard(0, directorCard);  //0 is Champions
 
-            /*
-            Debug.Log("\n\n\n\n\n\nDissonance Cards:");
-            foreach (DirectorCard dc in dissonanceSpawns.categories[0].cards)
+            foreach (StageSpawnInfo ssi in AncientWispPlugin.StageList)
             {
-                Debug.Log(dc.spawnCard.name);
+                DirectorAPI.DirectorCardHolder toAdd = ssi.GetMinStages() == 0 ? AWContent.AncientWispCard : AWContent.AncientWispLoopCard;
+
+                SceneDef sd = new SceneDef();
+                sd.baseSceneNameOverride = ssi.GetStageName();
+
+                DirectorAPI.Helpers.AddNewMonsterToStage(toAdd, false, DirectorAPI.GetStageEnumFromSceneDef(sd), ssi.GetStageName());
             }
-            */
 
-            DirectorAPI.MonsterActions += delegate (List<DirectorAPI.DirectorCardHolder> list, DirectorAPI.StageInfo stage)
-            {
-                if (!list.Contains(AWContent.AncientWispCard))
-                {
-                    bool shouldSpawn = false;
-                    int minStages = 0;
-                    foreach (StageSpawnInfo ssi in AncientWispPlugin.StageList)
-                    {
-                        if (ssi.GetStageName() == stage.CustomStageName)
-                        {
-                            shouldSpawn = true;
-                            minStages = ssi.GetMinStages();
-                            break;
-                        }
-                    }
-
-                    if (shouldSpawn && Run.instance.stageClearCount >= minStages)   //This skips having to make a card for each unique minStageCompletions
-                    {
-                        //directorCard.minimumStageCompletions = minStages; //Don't modify the static variable
-                        list.Add(AWContent.AncientWispCard);
-                    }
-                }
-            };
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]

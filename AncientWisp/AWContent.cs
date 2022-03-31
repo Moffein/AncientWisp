@@ -23,6 +23,7 @@ namespace AncientWisp
 
         public static List<GameObject> projectilePrefabs = new List<GameObject>();
         public static DirectorAPI.DirectorCardHolder AncientWispCard;
+        public static DirectorAPI.DirectorCardHolder AncientWispLoopCard;
 
         public string identifier => "AncientWisp.AWContent";
 

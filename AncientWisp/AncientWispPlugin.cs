@@ -68,9 +68,9 @@ namespace AncientWisp
 
                 string name = current[0];
                 int minStages = 0;
-                if (current.Length == 2 && int.TryParse(current[1], out int num) && num > 0)
+                if (current.Length > 1)
                 {
-                    minStages = num;
+                    minStages = 5;
                 }
 
                 StageList.Add(new StageSpawnInfo(name, minStages));
