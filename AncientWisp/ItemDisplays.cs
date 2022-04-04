@@ -223,17 +223,19 @@ namespace AncientWisp
             for (int i = 0; i < item.Length; i++)
             {
                 ItemDisplayRule[] rules = item[i].displayRuleGroup.rules;
-
-                for (int j = 0; j < rules.Length; j++)
+                if (rules != null)
                 {
-                    GameObject followerPrefab = rules[j].followerPrefab;
-                    if (followerPrefab)
+                    for (int j = 0; j < rules.Length; j++)
                     {
-                        string name = followerPrefab.name;
-                        string key = (name != null) ? name.ToLower() : null;
-                        if (!itemDisplayPrefabs.ContainsKey(key))
+                        GameObject followerPrefab = rules[j].followerPrefab;
+                        if (followerPrefab)
                         {
-                            itemDisplayPrefabs[key] = followerPrefab;
+                            string name = followerPrefab.name;
+                            string key = (name != null) ? name.ToLower() : null;
+                            if (!itemDisplayPrefabs.ContainsKey(key))
+                            {
+                                itemDisplayPrefabs[key] = followerPrefab;
+                            }
                         }
                     }
                 }
