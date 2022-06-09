@@ -66,7 +66,7 @@ namespace AncientWisp
             {
                 DirectorAPI.DirectorCardHolder toAdd = ssi.GetMinStages() == 0 ? AWContent.AncientWispCard : AWContent.AncientWispLoopCard;
 
-                SceneDef sd = new SceneDef();
+                SceneDef sd = ScriptableObject.CreateInstance<SceneDef>();
                 sd.baseSceneNameOverride = ssi.GetStageName();
 
                 DirectorAPI.Helpers.AddNewMonsterToStage(toAdd, false, DirectorAPI.GetStageEnumFromSceneDef(sd), ssi.GetStageName());
