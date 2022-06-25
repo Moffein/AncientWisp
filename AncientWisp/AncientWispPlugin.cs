@@ -25,7 +25,7 @@ namespace AncientWisp
     [BepInDependency("com.Moffein.RiskyArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
 
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.4.3")]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.4.4")]
     [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(LanguageAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
@@ -108,11 +108,9 @@ namespace AncientWisp
 
             ancientWispMaster.GetComponent<CharacterMaster>().bodyPrefab = AncientWispObject;
 
+            GameObject GrovetenderPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Gravekeeper/GravekeeperBody.prefab").WaitForCompletion();
             DeathRewards deathReward = AncientWispObject.GetComponent<DeathRewards>();
-            deathReward.bossPickup = new SerializablePickupIndex()
-            {
-                pickupName = "ItemIndex.SprintWisp"
-            };
+            deathReward.bossDropTable = GrovetenderPrefab.GetComponent<DeathRewards>().bossDropTable;
 
             SfxLocator ancientWispSfx = AncientWispObject.AddComponent<SfxLocator>();
             ancientWispSfx.barkSound = "Play_magmaWorm_idle_VO";
