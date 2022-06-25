@@ -66,7 +66,7 @@ namespace EntityStates.MoffeinAncientWispSkills
 					EffectManager.SpawnEffect(Enrage.enragePrefab, effectData, true);
 					for (int i = 0; i < 2; i++)
 					{
-						SummonEnemy("SpawnCards/CharacterSpawnCards/cscGreaterWisp");
+						SummonEnemy();
 					}
 
 					if (!base.characterBody.HasBuff(AncientWisp.AncientWispPlugin.enrageBuff))
@@ -87,9 +87,9 @@ namespace EntityStates.MoffeinAncientWispSkills
 			return InterruptPriority.PrioritySkill;
 		}
 
-		private void SummonEnemy(string str)
+		private void SummonEnemy()
 		{
-			DirectorSpawnRequest directorSpawnRequest = new DirectorSpawnRequest(LegacyResourcesAPI.Load<SpawnCard>(str), new DirectorPlacementRule
+			DirectorSpawnRequest directorSpawnRequest = new DirectorSpawnRequest(archWispCard != null ? archWispCard : minionCard, new DirectorPlacementRule
 			{
 				placementMode = DirectorPlacementRule.PlacementMode.Approximate,
 				minDistance = 3f,
@@ -113,5 +113,7 @@ namespace EntityStates.MoffeinAncientWispSkills
 		private uint soundID;
 		private bool stoppedSound = false;
 		public static BuffIndex enrageBuff;
+		public static CharacterSpawnCard minionCard = LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscGreaterWisp");
+		public static CharacterSpawnCard archWispCard = null;
 	}
 }

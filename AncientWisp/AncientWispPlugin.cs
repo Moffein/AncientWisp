@@ -24,6 +24,7 @@ namespace AncientWisp
 {
     [BepInDependency("com.Moffein.RiskyArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
 
+    [BepInDependency("com.Moffein.ArchaicWisp", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Moffein.FixDamageTrailNullref")]
     [BepInDependency("com.bepis.r2api")]
     [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.5.0")]
@@ -35,6 +36,7 @@ namespace AncientWisp
         public static List<StageSpawnInfo> StageList = new List<StageSpawnInfo>();
 
         public static bool allowOrigin = true;
+        public static bool archWispCompat = true;
 
         public static BuffDef enrageBuff;
 
@@ -166,6 +168,17 @@ namespace AncientWisp
             };
 
             ContentManager.collectContentPackProviders += ContentManager_collectContentPackProviders;
+
+            if (archWispCompat && BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Moffein.ArchaicWisp"))
+            {
+                GrabArchWispCard();
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        private void GrabArchWispCard()
+        {
+            EntityStates.MoffeinAncientWispSkills.Enrage.archWispCard = (CharacterSpawnCard)ArchaicWisp.ArchaicWispContent.ArchaicWispCard.Card.spawnCard;
         }
 
         private void ContentManager_collectContentPackProviders(ContentManager.AddContentPackProviderDelegate addContentPackProvider)
