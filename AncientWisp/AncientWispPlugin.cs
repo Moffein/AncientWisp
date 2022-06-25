@@ -24,8 +24,9 @@ namespace AncientWisp
 {
     [BepInDependency("com.Moffein.RiskyArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
 
+    [BepInDependency("com.Moffein.FixDamageTrailNullref")]
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.4.4")]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.5.0")]
     [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(LanguageAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
@@ -309,8 +310,11 @@ namespace AncientWisp
             proj.GetComponent<Rigidbody>().useGravity = false;
 
             GameObject projGround = PrefabAPI.InstantiateClone(pie.childrenProjectilePrefab, "MoffeinAncientWispCannonGround", true);
-            Destroy(projGround.GetComponent<ProjectileDamageTrail>());
             pie.childrenProjectilePrefab = projGround;
+
+            //Destroy(projGround.GetComponent<ProjectileDamageTrail>());
+            ProjectileDamageTrail pdt = projGround.GetComponent<ProjectileDamageTrail>();
+            pdt.damageToTrailDpsFactor *= 2f;
 
             FireBarrage.projectilePrefab = proj;
             //FireRHCannon.projectilePrefabNoFire = projNoFire;
