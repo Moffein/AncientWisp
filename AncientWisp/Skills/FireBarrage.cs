@@ -3,6 +3,7 @@ using RoR2;
 using RoR2.Projectile;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
 
@@ -14,6 +15,12 @@ namespace EntityStates.MoffeinAncientWispSkills
 		{
 			base.OnEnter();
 			Ray aimRay = base.GetAimRay();
+
+			if (AncientWisp.AncientWispPlugin.AccurateEnemiesLoaded && AncientWisp.AncientWispPlugin.AccurateEnemiesCompat)
+            {
+				aimRay = AccurateEnemiesAimray(aimRay);
+            }
+
 			string text = "MuzzleRight";
 			this.duration = FireBarrage.baseDuration / this.attackSpeedStat;
 			this.durationBetweenShots = FireBarrage.baseDurationBetweenShots / this.attackSpeedStat;
@@ -87,5 +94,17 @@ namespace EntityStates.MoffeinAncientWispSkills
 		private float durationBetweenShots;
 		public int bulletCountCurrent = 1;
 		public int bulletsToFire = 0;
+
+		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+		private Ray AccurateEnemiesAimray(Ray aimRay)
+        {
+			if (base.characterBody && !base.characterBody.isPlayerControlled)
+			{
+				HurtBox targetHurtbox = AccurateEnemies.Util.GetMasterAITargetHurtbox(base.characterBody.master);
+				Ray newAimRay = AccurateEnemies.Util.PredictAimrayPS(aimRay, base.GetTeam(), AccurateEnemies.AccurateEnemiesPlugin.basePredictionAngle, FireBarrage.projectilePrefab, targetHurtbox);
+				return newAimRay;
+			}
+			return aimRay;
+        }
 	}
 }

@@ -29,6 +29,9 @@
     <Reference Include="0Harmony20">
       <HintPath>libs\BepInEx\0Harmony20.dll</HintPath>
     </Reference>
+    <Reference Include="AccurateEnemies">
+      <HintPath>libs\SoftDependencies\AccurateEnemies.dll</HintPath>
+    </Reference>
     <Reference Include="ArchaicWisp">
       <HintPath>libs\SoftDependencies\ArchaicWisp.dll</HintPath>
     </Reference>
