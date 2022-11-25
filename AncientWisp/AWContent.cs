@@ -15,6 +15,7 @@ namespace AncientWisp
         internal static ContentPack contentPack = new ContentPack();
         public static List<GameObject> bodyPrefabs = new List<GameObject>();
         public static List<GameObject> masterPrefabs = new List<GameObject>();
+        public static List<UnlockableDef> unlockableDefs = new List<UnlockableDef>();
         public static List<EffectDef> effectDefs = new List<EffectDef>();
         //public static List<GameObject> networkedObjectPrefabs = new List<GameObject>();
         public static List<SkillDef> skillDefs = new List<SkillDef>();
@@ -36,6 +37,7 @@ namespace AncientWisp
             contentPack.projectilePrefabs.Add(projectilePrefabs.ToArray());
             contentPack.skillDefs.Add(skillDefs.ToArray());
             contentPack.skillFamilies.Add(skillFamilies.ToArray());
+            contentPack.unlockableDefs.Add(unlockableDefs.ToArray());
             yield break;
         }
 

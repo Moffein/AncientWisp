@@ -27,8 +27,8 @@ namespace AncientWisp
     [BepInDependency("com.Moffein.ArchaicWisp", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Moffein.FixDamageTrailNullref")]
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.5.2")]
-    [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(LanguageAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.0")]
+    [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
     public class AncientWispPlugin : BaseUnityPlugin
@@ -39,6 +39,7 @@ namespace AncientWisp
         public static bool archWispCompat = true;
         public static bool AccurateEnemiesLoaded = false;
         public static bool AccurateEnemiesCompat = true;
+        public static PluginInfo pluginInfo;
 
         public static BuffDef enrageBuff;
 
@@ -58,6 +59,8 @@ namespace AncientWisp
         }
         public void Awake()
         {
+            pluginInfo = Info;
+            new LanguageTokens();
             AccurateEnemiesLoaded = BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Moffein.AccurateEnemies");
             float flareSize = base.Config.Bind<float>(new ConfigDefinition("General", "Eye Flare Size"), 0.5f, new ConfigDescription("How big the flare effect on the eye should be. 0 disables.")).Value;
             allowOrigin = base.Config.Bind<bool>(new ConfigDefinition("General", "RiskyArtifacts - Add to Artifact of Origination Spawnpool"), true, new ConfigDescription("If RiskyArtifacts is installed, adds this boss to the Origination spawnpool.")).Value;
@@ -81,7 +84,6 @@ namespace AncientWisp
 
                 StageList.Add(new StageSpawnInfo(name, minStages));
             }
-            new Tokens();
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("AncientWisp.moffeinancientwisp"))
             {
                 AWContent.assets = AssetBundle.LoadFromStream(stream);
@@ -117,6 +119,12 @@ namespace AncientWisp
             GameObject GrovetenderPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Gravekeeper/GravekeeperBody.prefab").WaitForCompletion();
             DeathRewards deathReward = AncientWispObject.GetComponent<DeathRewards>();
             deathReward.bossDropTable = GrovetenderPrefab.GetComponent<DeathRewards>().bossDropTable;
+
+            UnlockableDef logUnlock = ScriptableObject.CreateInstance<UnlockableDef>();
+            logUnlock.nameToken = "UNLOCKABLE_LOG_MOFFEIN_ANCIENTWISP";
+            logUnlock.cachedName = "MOFFEIN_ANCIENTWISP_BODY_NAME";
+            AWContent.unlockableDefs.Add(logUnlock);
+            deathReward.logUnlockableDef = logUnlock;
 
             SfxLocator ancientWispSfx = AncientWispObject.AddComponent<SfxLocator>();
             ancientWispSfx.barkSound = "Play_magmaWorm_idle_VO";
@@ -258,12 +266,13 @@ namespace AncientWisp
             ancientWispBody.baseNameToken = "MOFFEIN_ANCIENTWISP_BODY_NAME";
             ancientWispBody.subtitleNameToken = "MOFFEIN_ANCIENTWISP_BODY_SUBTITLE";
             ancientWispBody.baseMaxHealth = 2800f;
-            ancientWispBody.levelMaxHealth = ancientWispBody.baseMaxHealth * 0.3f;
+            ancientWispBody.levelMaxHealth = 840f;
             ancientWispBody.baseArmor = 20f;
+            ancientWispBody.levelArmor = 0f;
             ancientWispBody.baseDamage = 20f;
-            ancientWispBody.levelDamage = ancientWispBody.baseDamage * 0.2f;
+            ancientWispBody.levelDamage = 4f;
             ancientWispBody.baseRegen = 0f;
-            ancientWispBody.levelRegen = ancientWispBody.baseRegen * 0.2f;
+            ancientWispBody.levelRegen = 0f;
             ancientWispBody.portraitIcon = AWContent.assets.LoadAsset<Texture>("aw_noflames.png");
             ancientWispBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/simpledotcrosshair");
             ancientWispBody.hideCrosshair = false;

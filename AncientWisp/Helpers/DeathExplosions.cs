@@ -10,15 +10,18 @@ namespace AncientWisp.Helpers
 {
     class DeathExplosions : MonoBehaviour
     {
+        public static int maxEplosions = 5;
 
+        private int explosions = 0;
         public void FixedUpdate()
         {
             stopwatch += Time.fixedDeltaTime;
             if (stopwatch > DeathExplosions.timeBetweenExplosions)
             {
                 stopwatch -= DeathExplosions.timeBetweenExplosions;
-                if (NetworkServer.active)
+                if (NetworkServer.active && explosions < maxEplosions)
                 {
+                    explosions++;
                     EffectManager.SpawnEffect(DeathExplosions.archWispExplosion, new EffectData
                     {
                         origin = this.transform.position + new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), UnityEngine.Random.Range(-4.5f, 4.5f), UnityEngine.Random.Range(-4.5f, 4.5f)),

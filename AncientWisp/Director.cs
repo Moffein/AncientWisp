@@ -60,7 +60,12 @@ namespace AncientWisp
             }
 
             DirectorCardCategorySelection dissonanceSpawns = Addressables.LoadAssetAsync<DirectorCardCategorySelection>("RoR2/Base/MixEnemy/dccsMixEnemy.asset").WaitForCompletion();
-            dissonanceSpawns.AddCard(0, directorCard);  //0 is Champions
+            int categoryIndex = FindCategoryIndexByName(dissonanceSpawns, "Champions");
+            if (categoryIndex >= 0) dissonanceSpawns.AddCard(categoryIndex, directorCard);
+
+            DirectorCardCategorySelection familySpawns = Addressables.LoadAssetAsync<DirectorCardCategorySelection>("RoR2/Base/Common/dccsWispFamily.asset").WaitForCompletion();
+            categoryIndex = FindCategoryIndexByName(familySpawns, "Champions");
+            if (categoryIndex >= 0) familySpawns.AddCard(categoryIndex, directorCard);
 
             foreach (StageSpawnInfo ssi in AncientWispPlugin.StageList)
             {
@@ -81,6 +86,21 @@ namespace AncientWisp
             {
                 Risky_Artifacts.Artifacts.Origin.AddSpawnCard(spawncard, Risky_Artifacts.Artifacts.Origin.BossTier.t3);
             }
+        }
+
+        //Minibosses
+        //Basic Monsters
+        //Champions
+        public static int FindCategoryIndexByName(DirectorCardCategorySelection dcs, string categoryName)
+        {
+            for (int i = 0; i < dcs.categories.Length; i++)
+            {
+                if (string.CompareOrdinal(dcs.categories[i].name, categoryName) == 0)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }
