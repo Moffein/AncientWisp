@@ -9,10 +9,8 @@ using UnityEngine.Networking;
 
 namespace AncientWisp.Helpers
 {
-    class LightningVerticalHit : MonoBehaviour
+    public class LightningVerticalHit : MonoBehaviour
     {
-
-
         public void FixedUpdate()
         {
             stopwatch += Time.fixedDeltaTime;
@@ -23,7 +21,7 @@ namespace AncientWisp.Helpers
                 ProjectileDamage pd = this.gameObject.GetComponent<ProjectileDamage>();
                 if (pc && pd)
                 {
-                    new BulletAttack
+                    BulletAttack ba = new BulletAttack
                     {
                         owner = pc.owner,
                         weapon = this.gameObject,
@@ -45,7 +43,9 @@ namespace AncientWisp.Helpers
                         smartCollision = true,
                         maxDistance = 16f,
                         stopperMask = LayerIndex.world.mask
-                    }.Fire();
+                    };
+                    ba.damageType |= DamageType.AOE;
+                    ba.Fire();
                 }
             }
         }
