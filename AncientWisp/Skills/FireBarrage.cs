@@ -98,7 +98,7 @@ namespace EntityStates.MoffeinAncientWispSkills
 		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
 		private Ray AccurateEnemiesAimray(Ray aimRay)
         {
-			if (base.characterBody && !base.characterBody.isPlayerControlled)
+			if (base.characterBody && !base.characterBody.isPlayerControlled && (AccurateEnemies.AccurateEnemiesPlugin.alwaysAllowBosses || !AccurateEnemies.AccurateEnemiesPlugin.eliteOnly || base.characterBody.isElite))
 			{
 				HurtBox targetHurtbox = AccurateEnemies.Util.GetMasterAITargetHurtbox(base.characterBody.master);
 				Ray newAimRay = AccurateEnemies.Util.PredictAimrayPS(aimRay, base.GetTeam(), AccurateEnemies.AccurateEnemiesPlugin.basePredictionAngle, FireBarrage.projectilePrefab, targetHurtbox);
