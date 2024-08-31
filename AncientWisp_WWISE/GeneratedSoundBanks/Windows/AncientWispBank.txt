@@ -8,7 +8,7 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	3673881719	Volume_SFX			\Default Work Unit\Volume_SFX	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	898416079	wWispBShoot1	C:\Users\Node\RoR2 Mods\AncientWisp\AncientWisp_WWISE\.cache\Windows\SFX\wWispBShoot1_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\AncientWisp Mixer\wWispBShoot1		15562
-	989229546	wWispB_Lightning	C:\Users\Node\RoR2 Mods\AncientWisp\AncientWisp_WWISE\.cache\Windows\SFX\wWispBDeath_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\AncientWisp Mixer\wWispB_Lightning		23263
-	1015708222	wWormExplosion	C:\Users\Node\RoR2 Mods\AncientWisp\AncientWisp_WWISE\.cache\Windows\SFX\wWormExplosion_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\AncientWisp Mixer\wWormExplosion		49415
+	898416079	wWispBShoot1	D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\.cache\Windows\SFX\wWispBShoot1_C214D156.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\AncientWisp Mixer\wWispBShoot1		15586
+	989229546	wWispB_Lightning	D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\.cache\Windows\SFX\wWispBDeath_C214D156.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\AncientWisp Mixer\wWispB_Lightning		23287
+	1015708222	wWormExplosion	D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\.cache\Windows\SFX\wWormExplosion_C214D156.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\AncientWisp Mixer\wWormExplosion		49439
 

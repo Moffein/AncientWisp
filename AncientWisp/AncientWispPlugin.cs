@@ -22,13 +22,16 @@ using UnityEngine.AddressableAssets;
 
 namespace AncientWisp
 {
+    [BepInDependency(R2API.R2API.PluginGUID)]
+    [BepInDependency(R2API.DirectorAPI.PluginGUID)]
+    [BepInDependency(R2API.PrefabAPI.PluginGUID)]
+    [BepInDependency(R2API.SoundAPI.PluginGUID)]
+    [BepInDependency(R2API.RecalculateStatsAPI.PluginGUID)]
     [BepInDependency("com.Moffein.RiskyArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Moffein.AccurateEnemies", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Moffein.ArchaicWisp", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency("com.Moffein.FixDamageTrailNullref")]
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.4")]
-    [R2API.Utils.R2APISubmoduleDependency(nameof(DirectorAPI), nameof(PrefabAPI), nameof(SoundAPI), nameof(RecalculateStatsAPI))]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.7")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
     public class AncientWispPlugin : BaseUnityPlugin
@@ -65,7 +68,7 @@ namespace AncientWisp
             float flareSize = base.Config.Bind<float>(new ConfigDefinition("General", "Eye Flare Size"), 0.5f, new ConfigDescription("How big the flare effect on the eye should be. 0 disables.")).Value;
             allowOrigin = base.Config.Bind<bool>(new ConfigDefinition("General", "RiskyArtifacts - Add to Artifact of Origination Spawnpool"), true, new ConfigDescription("If RiskyArtifacts is installed, adds this boss to the Origination spawnpool.")).Value;
             archWispCompat = base.Config.Bind<bool>(new ConfigDefinition("General", "Archaic Wisps Compatibility"), true, new ConfigDescription("Enrage spawns Archaic Wisps instead of Greater Wisps if the Archaic Wisps plugin is installed.")).Value;
-            string stages = base.Config.Bind<string>(new ConfigDefinition("Spawns", "Stage List"), "dampcavesimple, rootjungle, skymeadow, sulfurpools - loop, itdampcave, itskymeadow, goldshores, artifactworld", new ConfigDescription("What stages the boss will show up on. Add a '- loop' after the stagename to make it only spawn after looping. List of stage names can be found at https://github.com/risk-of-thunder/R2Wiki/wiki/List-of-scene-names")).Value;
+            string stages = base.Config.Bind<string>(new ConfigDefinition("Spawns", "Stage List"), "dampcavesimple, rootjungle, skymeadow, sulfurpools - loop, itdampcave, itskymeadow, goldshores, artifactworld, helminthroost, lemuriantemple", new ConfigDescription("What stages the boss will show up on. Add a '- loop' after the stagename to make it only spawn after looping. List of stage names can be found at https://github.com/risk-of-thunder/R2Wiki/wiki/List-of-scene-names")).Value;
             AccurateEnemiesCompat = base.Config.Bind<bool>(new ConfigDefinition("General", "AccurateEnemies Compatibility"), true, new ConfigDescription("If AccurateEnemies is installed, adds projectile aim prediction to the Ancient Wisp fireball barrage.")).Value;
 
             //parse stage
@@ -103,11 +106,7 @@ namespace AncientWisp
             CharacterBody ancientWispBody = AncientWispObject.GetComponent<CharacterBody>();
             SkillLocator ancientWispSkills = AncientWispObject.GetComponent<SkillLocator>();
 
-            On.RoR2.BodyCatalog.Init += (orig) =>
-            {
-                orig();
-                AncientWispPlugin.bodyIndex = BodyCatalog.FindBodyIndex("MoffeinAncientWispBody");
-            };
+            RoR2Application.onLoad += OnLoad;
 
             //Credits to TimeSweeper for this fix
             RoR2.RoR2Application.onLoad += LateSetup;
@@ -184,6 +183,11 @@ namespace AncientWisp
             {
                 GrabArchWispCard();
             }
+        }
+
+        private void OnLoad()
+        {
+            AncientWispPlugin.bodyIndex = BodyCatalog.FindBodyIndex("MoffeinAncientWispBody");
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]

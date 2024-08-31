@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationCache Version="1" SchemaVersion="119">
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Virtual Acoustics\Factory Reflect Acoustic Textures.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Virtual Acoustics\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Triggers\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Switches\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\States\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\SoundBanks\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Queries\Factory Queries.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Queries\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Presets\Factory Spatial Audio.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Presets\Factory Reflect.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Presets\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Modulators\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Mixing Sessions\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Game Parameters\Factory SoundSeed Air Game Syncs.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Game Parameters\Factory Motion.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Game Parameters\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Events\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory Reflect.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory McDSP Effects.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory iZotope Singleband Distortion.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory iZotope Multiband Distortion.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory iZotope Hybrid Reverb Effects.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory iZotope Filters.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory iZotope Dynamics.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory iZotope Delay.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory iZotope Box Modeler.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory Effects.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Factory Auro Headphone.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Effects\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Conversion Settings\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Control Surface Sessions\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Audio Devices\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Attenuations\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\AncientWisp.wproj" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\AncientWisp.Lenovo.wsettings" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Actor-Mixer Hierarchy\Factory Synth One.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Actor-Mixer Hierarchy\Factory Motion.wwu" DateLow="1725131783" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Projects\RoR2 Mods\AncientWisp\AncientWisp_WWISE\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1725131783" DateHigh="0"/>
+</ValidationCache>

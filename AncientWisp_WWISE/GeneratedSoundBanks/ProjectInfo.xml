@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="AncientWisp" GUID="{8449EA81-2D4C-4122-903F-3AA4170A4C85}" Generator="2023.1.4.8496"/>
+	<CacheRoot>../.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Windows" GUID="{24A3EFBE-59F9-49D6-BBC8-2E93925291FF}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{2BC4B4F1-6EF3-48F8-9987-29DD4811C6ED}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{93022E2F-1C81-54EB-3DA4-D7DCF895DABA}</FileHash>
+</ProjectInfo>

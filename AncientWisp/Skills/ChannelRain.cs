@@ -14,9 +14,11 @@ namespace EntityStates.MoffeinAncientWispSkills
 {
 	public class ChannelRain : BaseState
 	{
+		private float lastUpdateTime;
 		public override void OnEnter()
 		{
 			base.OnEnter();
+			lastUpdateTime = Time.time;
 			this.duration = ChannelRain.baseDuration;
 			this.durationBetweenCast = ChannelRain.baseDuration / Mathf.Min(ChannelRain.explosionCount * this.attackSpeedStat, ChannelRain.maxExplosions) ;
 			base.PlayCrossfade("Body", "ChannelRain", 0.3f);
@@ -94,7 +96,8 @@ namespace EntityStates.MoffeinAncientWispSkills
 		public override void FixedUpdate()
 		{
 			base.FixedUpdate();
-			this.castTimer += Time.fixedDeltaTime;
+			this.castTimer += Time.time - lastUpdateTime;
+			lastUpdateTime = Time.time;
 			if (this.castTimer >= this.durationBetweenCast)
 			{
 				this.PlaceRain();
