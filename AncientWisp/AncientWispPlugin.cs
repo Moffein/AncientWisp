@@ -31,7 +31,7 @@ namespace AncientWisp
     [BepInDependency("com.Moffein.AccurateEnemies", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Moffein.ArchaicWisp", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.7")]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.8")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
     public class AncientWispPlugin : BaseUnityPlugin
@@ -321,6 +321,7 @@ namespace AncientWisp
             pc.ghostPrefab = projGhost;
             projGhost.AddComponent<LightningVisual>();
             projGhost.transform.localScale = Vector3.zero;
+            projGhost.GetComponent<VFXAttributes>().DoNotPool = true;
             Destroy(projGhost.GetComponent<AkEvent>());
             Destroy(projGhost.GetComponent<AkGameObj>());
         }
