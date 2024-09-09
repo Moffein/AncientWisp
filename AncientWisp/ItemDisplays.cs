@@ -204,6 +204,48 @@ namespace AncientWisp
                             }
                         }
                     }
+                },
+
+                new ItemDisplayRuleSet.KeyAssetRuleGroup
+                {
+                    keyAsset = DLC2Content.Elites.Aurelionite.eliteEquipmentDef,
+                    displayRuleGroup = new DisplayRuleGroup
+                    {
+                        rules = new ItemDisplayRule[]
+                        {
+                            new ItemDisplayRule
+                            {
+                                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                                followerPrefab = LoadDisplay("DisplayEliteAurelioniteEquipment"),
+                                childName = "Head",
+                                localPos = new Vector3(0F, 0.25F, 0.34F),
+                                localAngles = new Vector3(0F, 0F, 0F),
+                                localScale = new Vector3(0.8F, 0.8F, 0.8F),
+                                limbMask = LimbFlags.None
+                            }
+                        }
+                    }
+                },
+
+                new ItemDisplayRuleSet.KeyAssetRuleGroup
+                {
+                    keyAsset = DLC2Content.Elites.Bead.eliteEquipmentDef,
+                    displayRuleGroup = new DisplayRuleGroup
+                    {
+                        rules = new ItemDisplayRule[]
+                        {
+                            new ItemDisplayRule
+                            {
+                                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                                followerPrefab = LoadDisplay("DisplayEliteBeadSpike"),
+                                childName = "Head",
+                                localPos = new Vector3(-0.00421F, 0.37641F, 0.06809F),
+                                localAngles = new Vector3(30F, 330F, 0F),
+                                localScale = new Vector3(0.03F, 0.03F, 0.03F),
+                                limbMask = LimbFlags.None
+                            }
+                        }
+                    }
                 }
             };
 
