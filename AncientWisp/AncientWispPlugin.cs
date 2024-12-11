@@ -31,7 +31,7 @@ namespace AncientWisp
     [BepInDependency("com.Moffein.AccurateEnemies", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Moffein.ArchaicWisp", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.7")]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.8")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
     public class AncientWispPlugin : BaseUnityPlugin
@@ -311,6 +311,7 @@ namespace AncientWisp
 
             ProjectileDamage pd = proj.GetComponent<ProjectileDamage>();
             pd.damageType = DamageType.Generic;
+            pd.damageType.damageSource = DamageSource.Secondary;
 
             Destroy(proj.GetComponent<AkEvent>());
             Destroy(proj.GetComponent<AkGameObj>());
@@ -333,6 +334,9 @@ namespace AncientWisp
 
             ProjectileSimple ps = proj.GetComponent<ProjectileSimple>();
             ps.lifetime = 7f;
+
+            ProjectileDamage pd = proj.GetComponent<ProjectileDamage>();
+            pd.damageType.damageSource = DamageSource.Primary;
 
             ProjectileImpactExplosion pie = proj.GetComponent<ProjectileImpactExplosion>();
             pie.lifetime = 7f;
