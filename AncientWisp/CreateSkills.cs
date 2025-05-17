@@ -29,7 +29,7 @@ namespace AncientWisp
             barrageDef.baseRechargeInterval = 7f;
             barrageDef.beginSkillCooldownOnSkillEnd = true;
             barrageDef.canceledFromSprinting = false;
-            barrageDef.dontAllowPastMaxStocks = true;
+            barrageDef.dontAllowPastMaxStocks = false;
             barrageDef.forceSprintDuringState = false;
             barrageDef.fullRestockOnAssign = true;
             barrageDef.icon = null;
@@ -70,7 +70,7 @@ namespace AncientWisp
             rainDef.baseRechargeInterval = 22f;
             rainDef.beginSkillCooldownOnSkillEnd = false;
             rainDef.canceledFromSprinting = false;
-            rainDef.dontAllowPastMaxStocks = true;
+            rainDef.dontAllowPastMaxStocks = false;
             rainDef.forceSprintDuringState = false;
             rainDef.fullRestockOnAssign = true;
             rainDef.icon = null;
@@ -111,7 +111,7 @@ namespace AncientWisp
             enrageDef.baseRechargeInterval = 0f;
             enrageDef.beginSkillCooldownOnSkillEnd = false;
             enrageDef.canceledFromSprinting = false;
-            enrageDef.dontAllowPastMaxStocks = true;
+            enrageDef.dontAllowPastMaxStocks = false;
             enrageDef.forceSprintDuringState = false;
             enrageDef.fullRestockOnAssign = true;
             enrageDef.icon = null;
