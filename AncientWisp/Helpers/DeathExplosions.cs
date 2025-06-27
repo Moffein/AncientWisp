@@ -27,7 +27,6 @@ namespace AncientWisp.Helpers
                         origin = this.transform.position + new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), UnityEngine.Random.Range(-4.5f, 4.5f), UnityEngine.Random.Range(-4.5f, 4.5f)),
                         scale = 1.7f
                     }, true);
-                    Util.PlaySound("Play_MoffeinAW_deathexplosion", this.gameObject);
                 }
             }
         }
@@ -47,7 +46,6 @@ namespace AncientWisp.Helpers
                     origin = this.transform.position + 1.5f * Vector3.up,
                     scale = 1.7f
                 }, true);
-                Util.PlaySound("Play_MoffeinAW_deathexplosion", this.gameObject);
             }
         }
 

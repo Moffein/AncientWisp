@@ -16,7 +16,18 @@ namespace AncientWisp
         public static void Repair()
         {
             RepairEnrageEffect();
+            BuildDeathEffect();
         }
+
+        private static void BuildDeathEffect()
+        {
+            GameObject effect = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/archwispdeath").InstantiateClone("MoffeinAW_DeathEffect", false);
+            EffectComponent ec = effect.GetComponent<EffectComponent>();
+            ec.soundName = "Play_MoffeinAW_deathexplosion";
+            AWContent.effectDefs.Add(new EffectDef(effect));
+            DeathExplosions.archWispExplosion = effect;
+        }
+
         private static void RepairEnrageEffect()
         {
             GameObject effect = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/AncientWispEnrage");

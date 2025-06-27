@@ -2,6 +2,7 @@
 using RoR2;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -100,7 +101,21 @@ namespace EntityStates.MoffeinAncientWispSkills
 			DirectorSpawnRequest directorSpawnRequest2 = directorSpawnRequest;
 			directorSpawnRequest2.onSpawnedServer = (Action<SpawnCard.SpawnResult>)Delegate.Combine(directorSpawnRequest2.onSpawnedServer, new Action<SpawnCard.SpawnResult>(delegate (SpawnCard.SpawnResult spawnResult)
 			{
-				spawnResult.spawnedInstance.GetComponent<Inventory>().CopyEquipmentFrom(base.characterBody.inventory);
+				if (spawnResult.spawnedInstance)
+				{
+					Inventory inventory = spawnResult.spawnedInstance.GetComponent<Inventory>();
+					if (inventory)
+					{
+						inventory.CopyEquipmentFrom(base.characterBody.inventory);
+                        if (base.characterBody && base.characterBody.inventory && base.characterBody.inventory.GetItemCount(RoR2Content.Items.Ghost) > 0)
+                        {
+                            inventory.GiveItem(RoR2Content.Items.Ghost, base.characterBody.inventory.GetItemCount(RoR2Content.Items.Ghost));
+                            inventory.GiveItem(RoR2Content.Items.HealthDecay, base.characterBody.inventory.GetItemCount(RoR2Content.Items.HealthDecay));
+                            inventory.GiveItem(RoR2Content.Items.BoostDamage, base.characterBody.inventory.GetItemCount(RoR2Content.Items.BoostDamage));
+                        }
+                    }
+
+                }
 			}));
 			DirectorCore.instance.TrySpawnObject(directorSpawnRequest);
 		}
