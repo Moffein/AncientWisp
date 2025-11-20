@@ -63,7 +63,7 @@ namespace AncientWisp
             int categoryIndex = FindCategoryIndexByName(dissonanceSpawns, "Champions");
             if (categoryIndex >= 0) dissonanceSpawns.AddCard(categoryIndex, directorCard);
 
-            DirectorCardCategorySelection familySpawns = Addressables.LoadAssetAsync<DirectorCardCategorySelection>("RoR2/Base/Common/dccsWispFamily.asset").WaitForCompletion();
+            DirectorCardCategorySelection familySpawns = Addressables.LoadAssetAsync<DirectorCardCategorySelection>("RoR2/Base/Common/DirectorCardCategorySelections/dccsWispFamily.asset").WaitForCompletion();
             categoryIndex = FindCategoryIndexByName(familySpawns, "Champions");
             if (categoryIndex >= 0) familySpawns.AddCard(categoryIndex, directorCard);
 
