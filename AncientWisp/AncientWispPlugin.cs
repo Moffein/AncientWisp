@@ -31,7 +31,7 @@ namespace AncientWisp
     [BepInDependency("com.Moffein.AccurateEnemies", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Moffein.ArchaicWisp", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.11")]
+    [BepInPlugin("com.Moffein.AncientWisp", "AncientWisp", "1.6.12")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
     public class AncientWispPlugin : BaseUnityPlugin
@@ -280,6 +280,7 @@ namespace AncientWisp
             ancientWispBody.portraitIcon = AWContent.assets.LoadAsset<Texture>("aw_noflames.png");
             ancientWispBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/simpledotcrosshair");
             ancientWispBody.hideCrosshair = false;
+            ancientWispBody.bodyFlags |= CharacterBody.BodyFlags.Ungrabbable;
 
             AWContent.entityStates.Add(typeof(EntityStates.MoffeinAncientWispSkills.SpawnState));
             SerializableEntityStateType sest = new SerializableEntityStateType(typeof(EntityStates.MoffeinAncientWispSkills.SpawnState));
